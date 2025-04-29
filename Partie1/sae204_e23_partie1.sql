@@ -28,6 +28,23 @@ CREATE TABLE _etudiant (
 	FOREIGN KEY (id_individu) REFERENCES individu(id_individu) 
 );
 
+CREATE TABLE _candidat(
+	no_candidat INT PRIMARY KEY,
+	classement VARCHAR,
+	boursier_lycee VARCHAR,
+	profil_candidat VARCHAR,
+	etablissement VARCHAR,
+	dept_etablissement VARCHAR,
+	ville_etablissement VARCHAR,
+	niveau_etude VARCHAR,
+	type_formation VARCHAR,
+	serie_prec VARCHAR,
+	dominante_prec VARCHAR,
+	specialite_prec VARCHAR,
+	lv1 VARCHAR,
+	lv2 VARCHAR
+);
+
 CREATE TABLE _semestre (
 	id_semestre INT PRIMARY KEY,
 	num_semestre VARCHAR(5),
