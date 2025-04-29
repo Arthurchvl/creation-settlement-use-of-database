@@ -76,3 +76,10 @@ CREATE TABLE _resultat (
 	FOREIGN KEY (id_semestre) REFERENCES _semestre(id_semestre),
 	FOREIGN KEY (id_module) REFERENCES _module(id_module)
 );
+
+CREATE TABLE _inscription(
+	group_tp VARCHAR(2),
+	amenagement_evaluation VARCHAR,
+	code_nip VARCHAR REFERENCES _etudiant(code_nip) ON DELETE CASCADE,
+    id_semestre INT REFERENCES _semestre(id_semestre) ON DELETE CASCADE
+);
