@@ -1,4 +1,4 @@
-CREATE SCHEMA "partie1";
+--CREATE SCHEMA "partie1";
 
 SET SCHEMA 'partie1';
 
@@ -55,4 +55,24 @@ CREATE TABLE _module (
 	id_module VARCHAR(5) PRIMARY KEY,
 	libelle_module VARCHAR,
 	ue VARCHAR(2)
+);
+
+CREATE TABLE _programme (
+	id_semestre INT,
+	id_module VARCHAR(5),
+	coefficient NUMERIC,
+	PRIMARY KEY (id_semestre, id_module),
+    FOREIGN KEY (id_semestre) REFERENCES _semestre(id_semestre),
+    FOREIGN KEY (id_module) REFERENCES _module(id_module)
+);
+
+CREATE TABLE _resultat (
+	code_nip VARCHAR,
+	id_semestre INT,
+	id_module VARCHAR(5),
+	moyenne NUMERIC,
+	PRIMARY KEY (code_nip, id_semestre, id_module),
+	FOREIGN KEY (code_nip) REFERENCES _etudiant(code_nip),
+	FOREIGN KEY (id_semestre) REFERENCES _semestre(id_semestre),
+	FOREIGN KEY (id_module) REFERENCES _module(id_module)
 );
