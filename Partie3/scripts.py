@@ -8,3 +8,4 @@ Vue = VueDF.to_numpy().astype(float)
 print(Vue.dtype)
 #%%
 Correls=np.corrcoef(Vue,rowvar=False)
+print(Correls)
