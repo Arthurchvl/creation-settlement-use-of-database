@@ -1,0 +1,18 @@
+CREATE OR REPLACE VIEW partie2.vue_analyse_reussite_s1 AS
+SELECT
+    e.code_nip,
+    i.sexe,
+    EXTRACT(YEAR FROM CURRENT_DATE) - EXTRACT(YEAR FROM i.date_naissance) AS age_candidature,
+    c.boursier_lycee,
+    e.mention_bac,
+    c.type_formation_prec,
+    ROUND(SUM(r.moyenne * p.coefficient) / NULLIF(SUM(p.coefficient), 0), 2) AS moyenne_s1
+FROM partie2._etudiant e
+JOIN partie2._individu i ON e.ine = i.ine
+JOIN partie2._candidat c ON c.ine = e.ine
+JOIN partie2._inscription ins ON ins.code_nip = e.code_nip
+JOIN partie2._resultat r ON r.code_nip = ins.code_nip AND r.annee_univ = ins.annee_univ AND r.num_semestre = ins.num_semestre
+JOIN partie2._programme p ON p.id_module = r.id_module AND p.annee_univ = r.annee_univ AND p.num_semestre = r.num_semestre
+WHERE ins.num_semestre = 'S1'
+GROUP BY e.code_nip, i.sexe, i.date_naissance, c.boursier_lycee, e.mention_bac, c.type_formation_prec
+HAVING COUNT(r.id_module) >= 3; -- S’assurer que les résultats sont complets (ajustable)
