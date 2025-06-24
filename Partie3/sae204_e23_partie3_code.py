@@ -139,7 +139,7 @@ print("=== 1. IMPORT ET EXPLORATION DES DONNÉES ===")
 
 # Chargement du fichier CSV dans un DataFrame (tableau pandas)
 # Un DataFrame est comme un tableau Excel en Python
-donnees_etudiants_df = pd.read_csv('Vue.csv')
+donnees_etudiants_df = pd.read_csv('sae204_e23_partie3_vue.csv')
 
 # Affichage des informations de base sur notre dataset
 print("Shape du DataFrame:", donnees_etudiants_df.shape)  # (nombre de lignes, nombre de colonnes)
